@@ -12,5 +12,5 @@ void Pagina::escribir(){
 }
 
 string Pagina::getUrl(){
-    return url.copy();
+    return url;
 }
