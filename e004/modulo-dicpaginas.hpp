@@ -17,7 +17,7 @@ class DicPaginas {
         DicPaginas();
         void insertar(Pagina nueva);
         Pagina* consultar(string url);
-        int numElem(void);
+        int tamano(void);
 };
 
 
