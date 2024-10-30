@@ -1,12 +1,10 @@
 #ifndef __MODULO_DICPAGINAS__
 #define __MODULO_DICPAGINAS__
 
-#include <iostream>
 #include <list>
 
 #include "modulo-pagina.hpp"
 
-using namespace std;
 
 class DicPaginas {
 
