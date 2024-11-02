@@ -14,3 +14,19 @@ void Pagina::escribir(){
 string Pagina::getUrl(){
     return url;
 }
+
+string Pagina::getTitulo(){
+    return this->titulo;
+}
+
+int Pagina::getRelevancia(){
+    return this->relevancia;
+}
+
+void Pagina::setTitulo(string nuevo){
+    this->titulo = nuevo;
+}
+
+void Pagina::setRelevancia(int nueva){
+    this->relevancia = nueva;
+}
