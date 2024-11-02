@@ -5,17 +5,13 @@
 using namespace std;
 
 class Pagina {
+    friend class DicPaginas;
     private:
         int relevancia;
         string url, titulo;
     public:
         void leer();
         void escribir();
-        string getUrl();
-        void setTitulo(string nueva);
-        void setRelevancia(int nueva);
-        string getTitulo();
-        int getRelevancia();
 };
 
 #endif

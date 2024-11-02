@@ -7,7 +7,7 @@ DicPaginas::DicPaginas(){
 
 Pagina* DicPaginas::consultar(string url){
     list<Pagina>::iterator itDic = lista.begin();
-    while(itDic != lista.end() && itDic->getUrl() != url){
+    while(itDic != lista.end() && itDic->url != url){
         itDic++;
     }
     if(itDic != lista.end()){
@@ -22,15 +22,15 @@ int DicPaginas::tamano(){
 
 void DicPaginas::insertar(Pagina nueva){
     list<Pagina>::iterator itDic = lista.begin();
-    while(itDic != lista.end() && itDic->getUrl() < nueva.getUrl()){
+    while(itDic != lista.end() && itDic->url < nueva.url){
         itDic++;
     }
-    if(itDic == lista.end() || itDic->getUrl() > nueva.getUrl()){
+    if(itDic == lista.end() || itDic->url > nueva.url){
         lista.insert(itDic, nueva);
         contador = contador + 1;
-    } else if (itDic->getUrl() == nueva.getUrl()){
-        itDic->setTitulo(nueva.getTitulo());
-        itDic->setRelevancia(nueva.getRelevancia());
+    } else if (itDic->url == nueva.url){
+        itDic->titulo = nueva.titulo;
+        itDic->relevancia = nueva.relevancia;
     }
 }
 
