@@ -25,10 +25,13 @@ void DicPaginas::insertar(Pagina nueva){
     while(itDic != lista.end() && itDic->getUrl() < nueva.getUrl()){
         itDic++;
     }
-    if(itDic == lista.end() || itDic->getUrl() == nueva.getUrl()){
+    if(itDic == lista.end() || itDic->getUrl() > nueva.getUrl()){
         lista.insert(itDic, nueva);
         contador = contador + 1;
-    } 
+    } else if (itDic->getUrl() == nueva.getUrl()){
+        itDic->setTitulo(nueva.getTitulo());
+        itDic->setRelevancia(nueva.getRelevancia());
+    }
 }
 
 
