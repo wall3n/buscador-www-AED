@@ -1,9 +1,5 @@
 #include "modulo-interprete.hpp"
 
-Interprete::Interprete(){
-   this->diccionario = DicPaginas(); 
-} 
-
 string normalizar(string palabra){
     string salida = "";
     for(unsigned i = 0; i < palabra.length(); i++){
@@ -67,7 +63,15 @@ string normalizar(string palabra){
     return salida;
 }
 
+Interprete::Interprete(){
+   this->diccionario = DicPaginas(); 
+} 
+
 void Interprete::INSERTAR(void){
+    Pagina nueva = Pagina();
+
+    nueva.leer();
+
     int contador = 0;
     string palabra;
     while(cin >> palabra){
@@ -76,16 +80,27 @@ void Interprete::INSERTAR(void){
         }
         contador++;
     }
+    
+    this->diccionario.insertar(nueva);
 
+    cout << this->diccionario.tamano() << ". ";
+    nueva.escribir();
     cout << contador << " palabras" << endl; 
+
 }
 
 
 void Interprete::BUSCAR_URL(void){
     string url;
     cin >> url;
-    cout << "u " << url << endl << "Total: 0 resultados" << endl;
-
+    Pagina * busqueda = this->diccionario.consultar(url);
+    if(busqueda == NULL){
+        cout << "u " << url << endl << "Total: 0 resultados" << endl;
+    } else {
+        cout << "u " << url << endl << "1. ";
+        busqueda->escribir();
+        cout << "Total: 1 resultados" << endl;
+    }
 }
 
 void Interprete::BUSCAR_PALABRA(void){
@@ -98,14 +113,14 @@ void Interprete::BUSCAR_PALABRAS_A(void){
     string palabra;
     getline(cin, palabra);
 
-    cout << "a " << normalizar(palabra) << endl << "Total: 0 resultados" << endl;
+    cout << "a" << normalizar(palabra) << endl << "Total: 0 resultados" << endl;
 }
 
 void Interprete::BUSCAR_PALABRAS_O(void){
     string palabra;
     getline(cin, palabra);
 
-    cout << "o " << normalizar(palabra) << endl << "Total: 0 resultados" << endl;
+    cout << "o" << normalizar(palabra) << endl << "Total: 0 resultados" << endl;
 }
 
 void Interprete::BUSCAR_PREFIJO(void){
