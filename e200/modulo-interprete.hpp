@@ -6,7 +6,7 @@
 
 class Interprete {
     private:
-        DicPaginas diccionario;
+        DicPaginas * diccionario;
         void INSERTAR(void);
         void BUSCAR_URL(void);
         void BUSCAR_PALABRA(void);

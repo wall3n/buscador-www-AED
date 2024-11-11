@@ -5,6 +5,10 @@ DicPaginas::DicPaginas(){
     tabla = new TablaHash();
 }
 
+DicPaginas::~DicPaginas(){
+    delete tabla;
+}
+
 
 Pagina* DicPaginas::consultar(string url){
     return tabla->consultar(url);

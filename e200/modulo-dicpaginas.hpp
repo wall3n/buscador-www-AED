@@ -13,6 +13,7 @@ class DicPaginas {
         TablaHash * tabla;
     public:
         DicPaginas();
+        ~DicPaginas();
         void insertar(Pagina nueva);
         Pagina* consultar(string url);
         int tamano(void);

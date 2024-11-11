@@ -64,7 +64,7 @@ string normalizar(string palabra){
 }
 
 Interprete::Interprete(){
-   this->diccionario = DicPaginas(); 
+   this->diccionario = new DicPaginas(); 
 } 
 
 void Interprete::INSERTAR(void){
@@ -81,9 +81,9 @@ void Interprete::INSERTAR(void){
         contador++;
     }
     
-    this->diccionario.insertar(nueva);
+    this->diccionario->insertar(nueva);
 
-    cout << this->diccionario.tamano() << ". ";
+    cout << this->diccionario->tamano() << ". ";
     nueva.escribir();
     cout << contador << " palabras" << endl; 
 
@@ -93,7 +93,7 @@ void Interprete::INSERTAR(void){
 void Interprete::BUSCAR_URL(void){
     string url;
     cin >> url;
-    Pagina * busqueda = this->diccionario.consultar(url);
+    Pagina * busqueda = this->diccionario->consultar(url);
     if(busqueda == NULL){
         cout << "u " << url << endl << "Total: 0 resultados" << endl;
     } else {
@@ -130,6 +130,7 @@ void Interprete::BUSCAR_PREFIJO(void){
 }
 
 void Interprete::SALIR(void){
+    delete this->diccionario;
     cout << "Saliendo..." << endl;
     exit(0);
 }
