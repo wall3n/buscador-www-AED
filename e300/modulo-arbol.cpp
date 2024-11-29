@@ -7,8 +7,12 @@ ArbolPalabras::NodoTrie::NodoTrie(){
 }
 
 ArbolPalabras::NodoTrie::~NodoTrie(){
-    delete this->sig;
-    delete this->ptr;
+    if(this->sig != NULL){
+        delete this->sig;
+    }
+    if(this->ptr != NULL){
+        delete this->ptr;
+    }
 }
 
 ArbolPalabras::NodoTrie * ArbolPalabras::NodoTrie::consulta(char letra){
@@ -23,8 +27,7 @@ ArbolPalabras::NodoTrie * ArbolPalabras::NodoTrie::consulta(char letra){
 }
 
 void ArbolPalabras::NodoTrie::inserta(char l){
-    NodoTrie * aux = new NodoTrie;
-    aux->sig = this;
+    NodoTrie * aux = this;
     while(aux->sig != NULL && aux->sig->car < l){
         aux = aux->sig;
     }
@@ -35,7 +38,6 @@ void ArbolPalabras::NodoTrie::inserta(char l){
         nuevo->ptr = new NodoTrie;
         aux->sig = nuevo;
     }
-    delete aux;
 }
 
 bool ArbolPalabras::NodoTrie::hayMarca(){
@@ -48,11 +50,18 @@ void ArbolPalabras::NodoTrie::ponMarca(){
 
 void ArbolPalabras::NodoTrie::ponEnLista(Pagina * pag){
     list<Pagina *>::iterator it = this->lista.begin();
-    while(it != this->lista.end() && *it == pag){
+    while(it != this->lista.end() &&  (*it)->relevancia > pag->relevancia){
         ++it;
     }
-    if(it == this->lista.end()){
-        this->lista.push_back(pag);
+    if(it == this->lista.end() || (*it)->relevancia < pag->relevancia){
+        this->lista.insert(it, pag);
+    } else if((*it)->relevancia == pag->relevancia){
+        while(it != this->lista.end() && (*it)->relevancia == pag->relevancia && (*it)->url < pag->url){
+            ++it;
+        }
+        if(it == this->lista.end() || (*it)->url != pag->url){
+            this->lista.insert(it, pag);
+        }
     }
 }
 
@@ -75,6 +84,9 @@ void ArbolPalabras::insertar(string pal, Pagina * pagina){
             pos->inserta(pal[i]);
         }
         pos = pos->consulta(pal[i]);
+        if(pos == NULL){
+            return;
+        }
     }
     pos->ponMarca();
     pos->ponEnLista(pagina);

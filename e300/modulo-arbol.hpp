@@ -1,7 +1,10 @@
 #ifndef __MODULO_ARBOL__
 #define __MODULO_ARBOL__
 
+#include <list>
+#include <string>
 #include "modulo-pagina.hpp"
+class Pagina;
 
 class ArbolPalabras {
     private:
@@ -9,7 +12,7 @@ class ArbolPalabras {
             private:
                 char car;
                 NodoTrie * sig, * ptr;
-                list<Pagina *> lista;
+                std::list<Pagina *> lista;
             public:
                 NodoTrie();
                 ~NodoTrie();
@@ -18,7 +21,7 @@ class ArbolPalabras {
                 bool hayMarca();
                 void ponMarca();
                 void ponEnLista(Pagina * pag);
-                list<Pagina *> getLista();
+                std::list<Pagina *> getLista();
         };
 
         NodoTrie * cabecera;
@@ -26,8 +29,8 @@ class ArbolPalabras {
     public:
         ArbolPalabras();
         ~ArbolPalabras();
-        void insertar(string pal, Pagina * pagina);
-        list<Pagina *> buscar(string pal);
+        void insertar(std::string pal, Pagina * pagina);
+        std::list<Pagina *> buscar(std::string pal);
 
 };
 
