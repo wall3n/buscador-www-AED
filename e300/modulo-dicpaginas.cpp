@@ -16,8 +16,8 @@ int DicPaginas::tamano(){
     return tabla->numElementos();
 }
 
-void DicPaginas::insertar(Pagina nueva){
-    tabla->insertar(nueva);
+Pagina * DicPaginas::insertar(Pagina nueva){
+    return tabla->insertar(nueva);
 }
 
 Pagina* DicPaginas::consultar(string url){

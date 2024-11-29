@@ -16,7 +16,7 @@ class DicPaginas {
     public:
         DicPaginas();
         ~DicPaginas();
-        void insertar(Pagina nueva);
+        Pagina * insertar(Pagina nueva);
         Pagina* consultar(string url);
         void insertar(string palabra, Pagina * pag);
         list<Pagina*> buscar(string palabra);
