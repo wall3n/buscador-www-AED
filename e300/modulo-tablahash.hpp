@@ -12,14 +12,14 @@ class TablaHash {
 
         int numElem;
         int tamTabla;
-        std::list<Pagina> * tabla;
+        std::list<Pagina *> * tabla;
 
         unsigned long hash(std::string url);
         void redimensionar(void);
     public:
         TablaHash();
         ~TablaHash();
-        void insertar(Pagina nueva);
+        Pagina * insertar(Pagina nueva);
         Pagina * consultar(std::string url);
         int numElementos (void);
 };
