@@ -1,0 +1,164 @@
+#include "modulo-interprete.hpp"
+
+string normalizar(string palabra){
+    string salida = "";
+    for(unsigned i = 0; i < palabra.length(); i++){
+        if(palabra[i] >= 'A' && palabra[i] <= 'Z'){
+            salida += tolower(palabra[i]);
+        } else if (palabra[i] == char(0xC3)){
+            switch(palabra[i+1]){
+                case char(0x81):
+                    salida += 'a';
+                    break;
+                case char(0xA1):
+                    salida += 'a';
+                    break;
+                case char(0x89):
+                    salida += 'e';
+                    break;
+                case char(0xA9):
+                    salida += 'e';
+                    break;
+                case char(0x8D):
+                    salida += 'i';
+                    break;
+                case char(0xAD):
+                    salida += 'i';
+                    break;
+                case char(0x93):    
+                    salida += 'o';
+                    break;
+                case char(0xB3):
+                    salida += 'o';
+                    break;
+                case char(0x9A):
+                    salida += 'u';
+                    break;
+                case char(0x9C):
+                    salida += 'u';
+                    break;
+                case char(0xBC):
+                    salida += 'u';
+                    break;
+                case char(0xBA):
+                    salida += 'u';
+                    break;
+                case char(0xB1):
+                    salida += char(0xC3);
+                    salida += char(0xB1);
+                    break;
+                case char(0x91):
+                    salida += char(0xC3);
+                    salida += char(0xB1);
+                    break;
+                default:
+                    salida += char(0xC3);
+                    salida += palabra[i+1];
+            }
+            i++;
+        } else {
+            salida += palabra[i];
+        }
+    }
+    return salida;
+}
+
+Interprete::Interprete(){
+   this->diccionario = new DicPaginas(); 
+} 
+
+void Interprete::INSERTAR(void){
+    Pagina nueva = Pagina();
+
+    nueva.leer();
+
+    int contador = 0;
+    string palabra;
+    Pagina * ref = this->diccionario->insertar(nueva);
+    while(cin >> palabra){
+        if(normalizar(palabra) == "findepagina"){
+            break;
+        }
+        this->diccionario->insertar(normalizar(palabra), ref);
+        contador++;
+    }
+    
+    cout << this->diccionario->tamano() << ". ";
+    nueva.escribir();
+    cout << contador << " palabras" << endl; 
+
+}
+
+
+void Interprete::BUSCAR_URL(void){
+    string url;
+    cin >> url;
+    Pagina * busqueda = this->diccionario->consultar(url);
+    if(busqueda == NULL){
+        cout << "u " << url << endl << "Total: 0 resultados" << endl;
+    } else {
+        cout << "u " << url << endl << "1. ";
+        busqueda->escribir();
+        cout << "Total: 1 resultados" << endl;
+    }
+}
+
+void Interprete::BUSCAR_PALABRA(void){
+    string palabra;
+    cin >> palabra;
+    list<Pagina *> resultados = this->diccionario->buscar(normalizar(palabra));
+    list<Pagina *>::iterator it = resultados.begin();
+    int contador = 0;
+    cout << "b " << normalizar(palabra) << endl;
+    while(it != resultados.end()){
+        ++contador;
+        cout << contador << ". ";
+        (*it)->escribir();
+        ++it;
+    }
+    cout << "Total: " << contador << " resultados" << endl;
+}
+
+void Interprete::BUSCAR_PALABRAS_A(void){
+    string palabra;
+    getline(cin, palabra);
+
+    cout << "a" << normalizar(palabra) << endl << "Total: 0 resultados" << endl;
+}
+
+void Interprete::BUSCAR_PALABRAS_O(void){
+    string palabra;
+    getline(cin, palabra);
+
+    cout << "o" << normalizar(palabra) << endl << "Total: 0 resultados" << endl;
+}
+
+void Interprete::BUSCAR_PREFIJO(void){
+    string prefijo;
+    cin >> prefijo;
+    cout << "p " << normalizar(prefijo) << endl << "Total: 0 resultados" << endl;
+}
+
+void Interprete::SALIR(void){
+    delete this->diccionario;
+    cout << "Saliendo..." << endl;
+    exit(0);
+}
+
+void Interprete::interpretar(string comando){
+    if(comando == "i"){
+       INSERTAR(); 
+    } else if(comando == "u"){
+        BUSCAR_URL();
+    } else if(comando == "b"){
+        BUSCAR_PALABRA();
+    } else if(comando == "a"){
+        BUSCAR_PALABRAS_A();
+    } else if(comando == "o"){
+        BUSCAR_PALABRAS_O();
+    } else if(comando == "p"){
+        BUSCAR_PREFIJO();
+    } else if(comando == "s"){
+        SALIR();
+    }
+}
