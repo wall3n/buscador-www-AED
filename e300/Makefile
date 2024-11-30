@@ -18,5 +18,3 @@ modulo-dicpaginas.o: modulo-dicpaginas.cpp modulo-dicpaginas.hpp modulo-tablahas
 
 modulo-interprete.o: modulo-interprete.cpp modulo-interprete.hpp modulo-dicpaginas.hpp modulo-tablahash.hpp modulo-arbol.hpp modulo-pagina.hpp
 	g++ -c modulo-interprete.cpp
-clean:
-	rm modulo-interprete.o modulo-dicpaginas.o modulo-tablahash.o modulo-pagina.o ejercicio200.o
