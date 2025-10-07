@@ -1,6 +1,6 @@
 # Buscador WWW (práctica AED)
 
-Repositorio del proyecto “Buscador WWW”, correspondiente a la práctica de la asignatura Algoritmos y Estructuras de Datos (AED).
+Repositorio del proyecto "Buscador WWW", correspondiente a la práctica de la asignatura Algoritmos y Estructuras de Datos (AED).
 
 ## Índice
 - [Descripción](#descripción)
@@ -8,82 +8,101 @@ Repositorio del proyecto “Buscador WWW”, correspondiente a la práctica de l
 - [Tecnologías](#tecnologías)
 - [Estructura del proyecto](#estructura-del-proyecto)
 - [Instalación y uso](#instalación-y-uso)
-- [Ejemplos / casos de prueba](#ejemplos--casos-de-prueba)
-- [Evaluación y criterios](#evaluación-y-criterios)
+- [Ejercicios](#ejercicios)
 - [Autores](#autores)
-- [Licencia](#licencia)
 
 ## Descripción  
-“Buscador WWW” es una aplicación de práctica para la asignatura AED. Su objetivo es implementar algoritmos de búsqueda / recuperación de información sobre documentos web (o representaciones de páginas) y permitir consultas eficientes.
+"Buscador WWW" es una aplicación práctica para la asignatura AED que implementa un sistema de búsqueda de información sobre documentos web. El proyecto está organizado en ejercicios incrementales que desarrollan diferentes aspectos del buscador, desde el procesamiento básico de texto hasta la implementación de estructuras de datos avanzadas para indexación y búsqueda.
 
 ## Objetivos
-- Aprender a indexar contenido web (o textual) de forma eficiente.  
-- Implementar algoritmos de búsqueda (por ejemplo: búsqueda por palabra clave, ranking, paginación).  
-- Manejar estructuras de datos (listas invertidas, árboles, vectores, etc.).  
-- Gestionar consultas de usuario y devolver resultados ordenados.
+- Implementar un sistema de indexación y búsqueda de contenido web
+- Utilizar diferentes estructuras de datos (tablas hash, árboles) para optimizar las búsquedas
+- Desarrollar un intérprete de comandos para procesar consultas
+- Gestionar eficientemente la información de páginas web
+- Implementar diferentes algoritmos de hash (SDBM, Jenkins)
 
 ## Tecnologías
-- Lenguaje: (indicar lenguaje usado — por ejemplo, **Python**, **Java**, **C++**, etc.).  
-- Herramientas de compilación / ejecución: (ej: `make`, `gradle`, `npm` si aplica).  
-- Dependencias externas (si hay): librerías para manipulación de texto, índices, etc.
+- Lenguaje: **C++**
+- Herramientas de compilación: `make`
+- No requiere dependencias externas
 
 ## Estructura del proyecto
 ```
 /
-├── src/                     # Código fuente
-├── tests/                   # Pruebas unitarias / de integración
-├── data/                    # Archivos de documentos / ejemplos
-├── scripts/                 # Scripts auxiliares para generación de índices, etc.
-├── README.md
-├── LICENSE
-└── (archivos de configuración)
+├── e001/                    # Ejercicio 1: Procesamiento básico de texto
+├── e002/                    # Ejercicio 2: Gestión de consultas simples
+├── e003/                    # Ejercicio 3: Implementación básica
+├── e004/                    # Ejercicio 4: Módulos base (páginas y diccionario)
+├── e200/                    # Ejercicio 200: Implementación con tabla hash
+├── e300/                    # Ejercicio 300: Implementación con árboles
+├── final/                   # Versión final del proyecto
+└── README.md
 ```
 
-Ajusta según la estructura real del repositorio.
+Cada ejercicio contiene:
+- Código fuente (.cpp)
+- Archivos de entrada de prueba (.in)
+- Archivos de salida esperada (.out)
+- Makefile (cuando es necesario)
+- Módulos específicos de la implementación (.cpp y .hpp)
 
 ## Instalación y uso
-Pasos típicos:
 
+1. Asegúrate de tener un compilador de C++ instalado y la utilidad make.
+
+2. Clona el repositorio:
 ```bash
-# Clona el repositorio
 git clone https://github.com/wall3n/buscador-www-AED.git
 cd buscador-www-AED
-
-# Si hay archivo de configuración o dependencia
-# Por ejemplo:
-# instalar dependencias
-[ comando de instalación ]
-
-# Compilar / ejecutar
-[ comando para ejecutar la aplicación ]
-
-# Realizar consultas
-[ ejemplo de uso ]
 ```
 
-## Ejemplos / casos de prueba
-Aquí algunos ejemplos de cómo consultar la aplicación:
+3. Para compilar un ejercicio específico:
+```bash
+cd eXXX    # donde XXX es el número del ejercicio (001, 002, etc.)
+make
+```
 
-- Consulta simple: "palabra1 palabra2"
-- Consulta con operadores lógicos (si soporta): palabra1 AND palabra2
-- Salida esperada: lista de documentos relevantes con puntuaciones / ranking
+4. Para ejecutar con los archivos de prueba:
+```bash
+./a.out < XXXa.in    # donde XXX es el número del ejercicio
+```
+
+## Ejercicios
+
+1. **e001**: Procesamiento básico de texto
+   - Implementación inicial del procesamiento de entrada
+   - Lectura y numeración de palabras
+
+2. **e002**: Gestión de consultas simples
+   - Manejo básico de consultas de texto
+   - Procesamiento de entrada/salida
+
+3. **e003**: Implementación básica
+   - Estructura inicial del buscador
+   - Procesamiento de comandos básicos
+
+4. **e004**: Módulos base
+   - Implementación de módulos fundamentales:
+     - Páginas web (`modulo-pagina`)
+     - Diccionario de páginas (`modulo-dicpaginas`)
+     - Intérprete de comandos (`modulo-interprete`)
+
+5. **e200**: Implementación con tabla hash
+   - Incorporación de tabla hash para indexación
+   - Implementación de diferentes algoritmos de hash:
+     - SDBM
+     - Jenkins One-at-a-Time
+
+6. **e300**: Implementación con árboles
+   - Incorporación de estructuras de árbol
+   - Optimización de búsquedas
+
+7. **final**: Versión completa del proyecto
+   - Integración de todos los módulos
+   - Implementación final optimizada
 
 Incluye casos de prueba de los archivos en `tests/` (o en donde estén).
-
-## Evaluación y criterios
-La práctica será evaluada en base a:
-
-- Correctitud de los resultados (que se devuelvan los documentos adecuados)  
-- Eficiencia (tiempo de respuesta ante consultas grandes)  
-- Uso adecuado de estructuras de datos  
-- Calidad del código (legibilidad, modularidad)  
-- Cobertura de pruebas  
-- Documentación (README, comentarios)
 
 ## Autores
 - Francisco Moreno Sánchez - francisco.morenos@um.es
 - Arancha Baena León - a.baenaleon@um.es
-
-## Licencia
-Este proyecto se entrega como práctica académica.  
-(Puedes indicar una licencia como MIT o la que decida la asignatura).
