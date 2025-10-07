@@ -10,8 +10,6 @@ Repositorio del proyecto “Buscador WWW”, correspondiente a la práctica de l
 - [Instalación y uso](#instalación-y-uso)
 - [Ejemplos / casos de prueba](#ejemplos--casos-de-prueba)
 - [Evaluación y criterios](#evaluación-y-criterios)
-- [Limitaciones conocidas](#limitaciones-conocidas)
-- [Posibles mejoras](#posibles-mejoras)
 - [Autores](#autores)
 - [Licencia](#licencia)
 
@@ -82,21 +80,9 @@ La práctica será evaluada en base a:
 - Cobertura de pruebas  
 - Documentación (README, comentarios)
 
-## Limitaciones conocidas
-- Volumen de datos pequeño (no optimizado para web real de gran escala)  
-- No soporta (si aplica): búsqueda semántica, relevancia avanzada, stemming, etc.  
-- Uso de memoria no optimizado en algunos casos
-
-## Posibles mejoras
-- Añadir soporte de operadores booleanos más complejos  
-- Soporte de ranking basado en TF‑IDF o BM25  
-- Stemming, lematización, sinónimos  
-- Indexado incremental o en tiempo real  
-- Interfaz gráfica o API REST  
-- Escalabilidad para grandes volúmenes de datos
-
 ## Autores
-- Francisco Moreno Sánchez
+- Francisco Moreno Sánchez - francisco.morenos@um.es
+- Arancha Baena León - a.baenaleon@um.es
 
 ## Licencia
 Este proyecto se entrega como práctica académica.  
